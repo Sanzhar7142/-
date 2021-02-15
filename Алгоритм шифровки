@@ -1,0 +1,27 @@
+a = 7
+m = 4096
+
+print("Введите строку которую вы хотите зашифровать:")
+
+
+main_str = input()
+
+Y = [0] * 8
+Y[0] = 502
+for i in range(1,8):
+ Y[i] = (a * Y[i-1]) % m
+print("Сгенерированные числа:")
+print(Y)
+
+gamma = ""
+for i in range(len(Y)):
+ gamma += chr(Y[i]%26+97)
+print( "Гамма:" + gamma)
+
+result_str = ""
+cnt = 0
+for i in range(len(main_str)):
+ result_str += chr((ord(main_str[i]) ^ ord(gamma[cnt]))+97)
+if cnt == 7:
+ cnt = 0
+print("Зашифрованный текст:" + result_str)
